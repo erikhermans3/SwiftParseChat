@@ -2,7 +2,7 @@
 //  MessagesViewController.swift
 //  
 //
-//  Created by Jesse Hu on 3/3/15.
+//  Created by Erik Hermans on 3/3/15.
 //
 //
 
