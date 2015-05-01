@@ -11,7 +11,7 @@ This is a re-write of https://github.com/relatedcode/NotificationChat using Swif
 Uses Alamofire for Swift HTTP requests, and APAddressBook for easier address book contacts. Please Star this repo if you find it useful.
 
 ## Installation
-- Clone the repository: https://github.com/huyouare/SwiftParseChat.git
+- Clone the repository: https://github.com/erikhermans3/SwiftParseChat
 - Open the cloned SwiftParseChat repo folder in console
 - Run `pod install`
 - Open SwiftParseChat.xcworkspace in XCode
