@@ -19,7 +19,7 @@ class Camera {
         let type = kUTTypeImage as String
         let cameraUI = UIImagePickerController()
         
-        let available = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) && contains(UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.Camera) as! [String]!, type)
+        let available = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) && (UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.Camera) as [String]!).contains(type)
         
         if available {
             cameraUI.mediaTypes = [type]
@@ -63,11 +63,11 @@ class Camera {
         let type = kUTTypeImage as String
         let imagePicker = UIImagePickerController()
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) && contains(UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.PhotoLibrary) as! [String]!, type) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) && (UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.PhotoLibrary) as [String]!).contains(type) {
             imagePicker.mediaTypes = [type]
             imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         }
-        else if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) && contains(UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.SavedPhotosAlbum) as! [String]!, type) {
+        else if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) && (UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.SavedPhotosAlbum) as [String]!).contains(type) {
             imagePicker.mediaTypes = [type]
             imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
         }
@@ -94,11 +94,11 @@ class Camera {
         let type = kUTTypeMovie as String
         let imagePicker = UIImagePickerController()
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) && contains(UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.PhotoLibrary) as! [String]!, type) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) && (UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.PhotoLibrary) as [String]!).contains(type) {
             imagePicker.mediaTypes = [type]
             imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         }
-        else if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) && contains(UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.SavedPhotosAlbum) as! [String]!, type) {
+        else if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) && (UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.SavedPhotosAlbum) as [String]!).contains(type) {
             imagePicker.mediaTypes = [type]
             imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
         }

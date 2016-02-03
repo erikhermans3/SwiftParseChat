@@ -34,16 +34,16 @@ class GroupsViewController: UITableViewController, UIAlertViewDelegate {
     }
     
     func loadGroups() {
-        var query = PFQuery(className: PF_GROUPS_CLASS_NAME)
+        let query = PFQuery(className: PF_GROUPS_CLASS_NAME)
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!)  in
             if error == nil {
                 self.groups.removeAll()
-                self.groups.extend(objects as! [PFObject]!)
+                self.groups.appendContentsOf(objects as! [PFObject]!)
                 self.tableView.reloadData()
             } else {
                 ProgressHUD.showError("Network error")
-                println(error)
+                print(error)
             }
         }
     }
@@ -53,24 +53,24 @@ class GroupsViewController: UITableViewController, UIAlertViewDelegate {
     }
     
     func actionNew() {
-        var alert = UIAlertView(title: "Please enter a name for your group", message: "", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
+        let alert = UIAlertView(title: "Please enter a name for your group", message: "", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
         alert.alertViewStyle = UIAlertViewStyle.PlainTextInput
         alert.show()
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         if buttonIndex != alertView.cancelButtonIndex {
-            var textField = alertView.textFieldAtIndex(0);
+            let textField = alertView.textFieldAtIndex(0);
             if let text = textField!.text {
-                if count(text) > 0 {
-                    var object = PFObject(className: PF_GROUPS_CLASS_NAME)
+                if text.characters.count > 0 {
+                    let object = PFObject(className: PF_GROUPS_CLASS_NAME)
                     object[PF_GROUPS_NAME] = text
                     object.saveInBackgroundWithBlock({ (success: Bool, error: NSError!) -> Void in
                         if success {
                             self.loadGroups()
                         } else {
                             ProgressHUD.showError("Network error")
-                            println(error)
+                            print(error)
                         }
                     })
                 }
@@ -119,7 +119,7 @@ class GroupsViewController: UITableViewController, UIAlertViewDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        var group = self.groups[indexPath.row]
+        let group = self.groups[indexPath.row]
         let groupId = group.objectId as String
         
         Messages.createMessageItem(PFUser(), groupId: groupId, description: group[PF_GROUPS_NAME] as! String)
