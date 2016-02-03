@@ -32,9 +32,9 @@ class WelcomeViewController: UIViewController {
                 }
             } else {
                 if error != nil {
-                    println(error)
+                    print(error)
                     if let info = error.userInfo {
-                        println(info)
+                        print(info)
                     }
                 }
                 ProgressHUD.showError("Facebook sign in error")
@@ -43,10 +43,10 @@ class WelcomeViewController: UIViewController {
     }
     
     func requestFacebook(user: PFUser) {
-        var request = FBRequest.requestForMe()
+        let request = FBRequest.requestForMe()
         request.startWithCompletionHandler { (connection: FBRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
             if error == nil {
-                var userData = result as! [String: AnyObject]!
+                let userData = result as! [String: AnyObject]!
                 self.processFacebook(user, userData: userData)
             } else {
                 PFUser.logOut()
@@ -100,7 +100,7 @@ class WelcomeViewController: UIViewController {
                         PFUser.logOut()
                         if let info = error!.userInfo {
                             ProgressHUD.showError("Login error")
-                            println(info["error"] as! String)
+                            print(info["error"] as! String)
                         }
                     }
                 })
@@ -108,7 +108,7 @@ class WelcomeViewController: UIViewController {
                 PFUser.logOut()
                 if let info = error!.userInfo {
                     ProgressHUD.showError("Failed to fetch Facebook photo")
-                    println(info["error"] as! String)
+                    print(info["error"] as! String)
                 }
             }
         }
