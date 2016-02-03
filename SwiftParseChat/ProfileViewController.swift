@@ -45,12 +45,12 @@ class ProfileViewController: UIViewController, UIActionSheetDelegate, UIImagePic
     }
     
     func loadUser() {
-        var user = PFUser.currentUser()
+        let user = PFUser.currentUser()
         
         userImageView.file = user[PF_USER_PICTURE] as? PFFile
         userImageView.loadInBackground { (image: UIImage!, error: NSError!) -> Void in
             if error != nil {
-                println(error)
+                print(error)
             }
         }
         
@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController, UIActionSheetDelegate, UIImagePic
     
     func saveUser() {
         let fullName = nameField.text
-        if count(fullName) > 0 {
+        if fullName.characters.count > 0 {
             var user = PFUser.currentUser()
             user[PF_USER_FULLNAME] = fullName
             user[PF_USER_FULLNAME_LOWER] = fullName.lowercaseString
@@ -114,13 +114,13 @@ class ProfileViewController: UIViewController, UIActionSheetDelegate, UIImagePic
     
     // MARK: - UIImagePickerControllerDelegate
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         var image = info[UIImagePickerControllerEditedImage] as! UIImage
         if image.size.width > 280 {
             image = Images.resizeImage(image, width: 280, height: 280)!
         }
         
-        var pictureFile = PFFile(name: "picture.jpg", data: UIImageJPEGRepresentation(image, 0.6))
+        let pictureFile = PFFile(name: "picture.jpg", data: UIImageJPEGRepresentation(image, 0.6))
         pictureFile.saveInBackgroundWithBlock { (succeeded: Bool, error: NSError!) -> Void in
             if error != nil {
                 ProgressHUD.showError("Network error")
@@ -133,14 +133,14 @@ class ProfileViewController: UIViewController, UIActionSheetDelegate, UIImagePic
             image = Images.resizeImage(image, width: 60, height: 60)!
         }
         
-        var thumbnailFile = PFFile(name: "thumbnail.jpg", data: UIImageJPEGRepresentation(image, 0.6))
+        let thumbnailFile = PFFile(name: "thumbnail.jpg", data: UIImageJPEGRepresentation(image, 0.6))
         thumbnailFile.saveInBackgroundWithBlock { (succeeded: Bool, error: NSError!) -> Void in
             if error != nil {
                 ProgressHUD.showError("Network error")
             }
         }
         
-        var user = PFUser.currentUser()
+        let user = PFUser.currentUser()
         user[PF_USER_PICTURE] = pictureFile
         user[PF_USER_THUMBNAIL] = thumbnailFile
         user.saveInBackgroundWithBlock { (succeeded: Bool, error: NSError!) -> Void in

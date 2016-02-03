@@ -56,15 +56,15 @@ class RegisterViewController: UITableViewController, UITextFieldDelegate {
         let email = emailField.text
         let password = passwordField.text.lowercaseString
         
-        if count(name) == 0 {
+        if name.characters.count == 0 {
             ProgressHUD.showError("Name must be set.")
             return
         }
-        if count(password) == 0 {
+        if password.characters.count == 0 {
             ProgressHUD.showError("Password must be set.")
             return
         }
-        if count(email) == 0 {
+        if email.characters.count == 0 {
             ProgressHUD.showError("Email must be set.")
             return
         }
