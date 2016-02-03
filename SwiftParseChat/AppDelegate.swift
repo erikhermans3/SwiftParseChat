@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Erik Hermans. All rights reserved.
 //
 // master branch
+// temp branch added
 
 import UIKit
 // Parse and ParseFacebookUtils imported in SwiftParseChat-Bridging-Header.h
